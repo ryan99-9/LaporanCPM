@@ -21,11 +21,11 @@
 .logo_name{
    display: flex; 
    padding-left: 0.625rem;
-   margin-right: 4.375rem;
+   margin-right: 2rem;
 }
 .logo{
     height: 2.5rem;
-    width: 2.5rem;
+    width: 7rem;
     margin-top: 0.0625rem;
     margin-bottom: 0.0625rem;
     margin-left: 0.3125rem;
@@ -39,7 +39,7 @@
     margin-top: 0.0625rem;
     margin-bottom: 0.0625rem;
     margin-left:0rem;
-    margin-right: 2.5rem;
+    margin-right: 0rem;
     color: rgba(194,39,45);
     display: flex
     

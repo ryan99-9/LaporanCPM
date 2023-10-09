@@ -5,6 +5,8 @@ import { Link, Navigate } from 'react-router-dom'
 import './Login.css'
 import { connect } from 'react-redux'
 import { login, errLoginfalse } from '../../redux/action/userAction'
+import { MU } from '../../asset'
+
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -35,7 +37,7 @@ class LoginPage extends React.Component {
         }
         const { visibility } = this.state
         return (
-            <div className='bg'>
+            <div className='bg' style={{ backgroundImage : `url(${MU})` }}>
                 <div className='contForm'>
                     <h1 className='textHello'>HELLO</h1>
                     <label className='textLabel'>Username</label>
@@ -63,9 +65,9 @@ class LoginPage extends React.Component {
                         />
                     </InputGroup>
                     <Button onClick={this.onLogin} className='loginButton'>Login in</Button>
-                    <p className='textHaveAccount'>Do you have an account?
+                    {/* <p className='textHaveAccount'>Do you have an account?
                         <Link to="/Register" className='textRegister'> Register
-                        </Link></p>
+                        </Link></p> */}
                     <Modal show={this.state.error}>
                         <Modal.Header>
                             <Modal.Title>Error</Modal.Title>

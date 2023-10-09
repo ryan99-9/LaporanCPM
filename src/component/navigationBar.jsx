@@ -60,29 +60,18 @@ class NavigationBar extends React.Component {
                 <Navbar fixed="top" className="navBg" >
                     <div className='logo_name'>
                         <Image src={LOGO} className="logo" />
-                        <h3 class="nameStore">RedStore</h3>
+                        <h3 class="nameStore"></h3>
                     </div>
                     <Container className='cont'>
-                        <div className="search">
-                            <InputGroup className="mb-3">
-                                <FormControl className="formControl"
-                                    placeholder="Manchester United"
-                                    ref="filter"
-                                />
-                                <InputGroup.Text id="basic-addon1" className="formControl" onClick={() => this.setState({ search: true })} >
-                                    {this.state.search ? "cari" : "find"}
-                                </InputGroup.Text>
-                                {/* <Button style={{width:'20vw'}} onClick={this.onFilter}>filter</Button> */}
-                            </InputGroup>
-                        </div>
+                       
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
-                                <Nav.Link className="navbarText" as={Link} to="/">Home</Nav.Link>
+                                <Nav.Link className="navbarText" as={Link} to="/">Digital Report System</Nav.Link>
                             </Nav>
-                            <Nav className="mr3">
+                            {/* <Nav className="mr3">
                                 <Nav.Link className="navbarText" as={Link} to="/HistoryAdmin">History Cart</Nav.Link>
-                            </Nav>
+                            </Nav> */}
                             <Dropdown >
                                 <Dropdown.Toggle style={{ backgroundColor: '#e8e8e8', border: 'none', color: 'black' }}
                                     id="dropdown-basic"

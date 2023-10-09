@@ -117,83 +117,15 @@ class Home extends React.Component {
             <div className='mainLayer w-100'>
                 <NavigationBar />
                 {/* <div className='second_layer'> */}
-                <div className='carousel'>
-                    <Carousel className='car'>
-                        {this.state.carousels.map(item => {
-                            return (
-                                <Carousel.Item interval={1000} className='carItem'>
-                                    <img
-                                        className="d-block imgCarousel"
-                                        src={item.image}
-                                        alt="First slide"
-                                    />
-                                </Carousel.Item>
-                            )
-                        })}
-                    </Carousel>
-                </div>
-                <div className='titleLayer' >
-                    <h2>Special Product</h2>
-                </div>
-                <div className='pagination'>
-                    <Button
-                        disabled={this.state.page <= 1 ? true : false}
-                        onClick={this.onPrevPage}
-                        variant="light"><i class="fad fa-angle-double-left"></i></Button>
-                    <p style={{ marginBottom: '0px' }}>page {this.state.page} of {this.state.max}</p>
-                    <Button
-                        disabled={this.state.page >= this.state.max ? true : false}
-                        onClick={this.onNextPage}
-                        variant="light"><i class="fad fa-angle-double-right"></i></Button>
-                </div>
-                <div className='product'>
-                    {this.onShowProduct()}
-                </div>
-                {/* </div> */}
-                <div className='thirdLayer'>
-                    <div className='paymentLayer'>
-                        <div className='payment'>Payment</div>
-                        <div className='imagePayment' >
-                            <a className='mr2 mx-3'
-                            ><img
-                                    // className='shopee'
-                                    style={{height:'6rem'}}
-                                    src={SHOPEE}
-                                    alt="payment" /></a>
-                            <a ><img
-                                style={{ height: '4rem', marginTop: '1rem' }}
-                                src={LINKAJA}
-                                alt="payment" /></a>
-                            <a className='mr2 mx-1'
-                                style={{}} ><img
-                                    style={{ height: '6rem', marginTop: '0.2rem', marginLeft: '0.5rem' }}
-                                    src={GOPAY}
-                                    alt="payment" /></a>
-                            <a className='mr1 mx-1'
-                                style={{}} ><img
-                                    style={{ height: '2.5rem', marginLeft: '0.5rem', marginTop: '1.8rem' }}
-                                    src={BRI}
-                                    alt="payment" /></a>
-                            <a><img
-                                className='bca'
-                                src={BCA}
-                                alt="payment" /></a>
-                        </div>
-                    </div>
-                    <div className='setContact'>
-                        <h1 id='contactus'>Contact Us</h1>
-                        <p>RedStore Official adalah akun resmi dari RedStore.</p>
-                        <p>Redstore membantu konsumen merasa mudah untuk mendapatkan jersey resmi dari brand terkenal dan juga dari official resmi klub yang bersangkutan</p>
-                        <div className='.contItemContact'>
-                            <a style={{ padding: '10px' }} href="http://wa.me/6285731040552"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                            <a style={{ padding: '10px' }} href="https://www.linkedin.com/in/nurul-hidayati-khusnia-fatatik-212646190/" ><i class="fab fa-linkedin"></i> Linkedin</a>
-                            <a style={{ padding: '10px' }} href="http://instagram.com/conannia17?utm_source=qr"><i class="fab fa-instagram"></i> Instagram</a>
-                            <a style={{ padding: '10px' }} href="https://twitter.com/khusniafh"><i class="fab fa-twitter"></i> Twitter</a>
-                            <a style={{ padding: '10px' }} href="mailto:conannia17@gmail.com"><i class="fas fa-envelope-open-text"></i>  edoafrian90@gmail.com</a>
 
-                        </div>
-                    </div>
-                </div>
+                <div className="home-container">
+      
+
+     
+      <iframe
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQN502bCWZL9vZkNjjMtE4ELYIN8bkAmL_CnB4YLMP7ae29X1rq505Wj8TkX711cgvqeC6UmgKx_P45/pubhtml?widget=true&amp;headers=false"
+        width="100%vw" height="700vh"></iframe>
+    </div>
 
             </div>
         )

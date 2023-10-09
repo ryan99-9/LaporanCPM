@@ -2,27 +2,45 @@ import Axios from 'axios'
 const API = 'https://database-jersey.herokuapp.com/'
 export const login = (username, password) => {
     return (dispatch) => {
-        Axios.get(`${API}users?username=${username}&password=${password}`)
-            .then(res => {
-                // console.log(res.data[0]);
-                // console.log(res.data);
-                //Jika inputan salah
-                if (res.data.length === 0) {
-                    return dispatch({
-                        type: 'ERROR_LOGIN'
-                    })
-                }//jika inputan benar
-                else {
-                    //Menyimpan data idUser ke local storage
-                    localStorage.setItem('idUser', res.data[0].id)
-                    //Mengirim data ke userReducer
-                    return dispatch({
-                        type: 'LOGIN',
-                        payload: res.data[0]
-                    })
-
+        if (username === "digibsd" && password === "digi123"){
+            localStorage.setItem('idUser','digibsd')
+            return dispatch({
+                type: 'LOGIN',
+                payload: {
+                    username : "digibsd",
+                    id: "200",
+                    password: "digi123",
+                    role: "admin",
+                    cart: []
                 }
             })
+        } else {
+            return dispatch({
+                type: 'ERROR_LOGIN'
+            })
+        }
+
+        // Axios.get(`${API}users?username=${username}&password=${password}`)
+        //     .then(res => {
+        //         // console.log(res.data[0]);
+        //         // console.log(res.data);
+        //         //Jika inputan salah
+        //         if (res.data.length === 0) {
+        //             return dispatch({
+        //                 type: 'ERROR_LOGIN'
+        //             })
+        //         }//jika inputan benar
+        //         else {
+        //             //Menyimpan data idUser ke local storage
+        //             localStorage.setItem('idUser', res.data[0].id)
+        //             //Mengirim data ke userReducer
+        //             return dispatch({
+        //                 type: 'LOGIN',
+        //                 payload: res.data[0]
+        //             })
+
+        //         }
+        //     })
     }
 }
 
@@ -47,12 +65,21 @@ export const logOut = () => {
 
 export const keepLogin = (id) => {
     return (dispatch) => {
+        if (id === "digibsd"){
+            return dispatch({
+                type: 'LOGIN',
+                payload: {
+                    username : "digibsd",
+                    id: "200",
+                    password: "digi123",
+                    role: "admin",
+                    cart: []
+                }
+            })
+        }
         Axios.get(`${API}users/${id}`)
             .then(res => {
-                return dispatch({
-                    type: 'LOGIN',
-                    payload: res.data
-                })
+                
             })
 
     }
