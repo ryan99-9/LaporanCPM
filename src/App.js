@@ -12,21 +12,20 @@ import NotFound from './pages/notFound.jsx';
 import { keepLogin } from './redux/action';
 
 import { connect } from 'react-redux'
+import LandingPage from './pages/LandingPage/LandingPage.jsx';
 
 
 
 
 class App extends React.Component {
-  componentDidMount() {
-    let id = localStorage.getItem('idUser')
-    this.props.keepLogin(id)
-  }
+ 
   render() {
     if (this.props.role === "admin") {
       return (
         <div>
           <Routes>
             <Route path='/' element={<Home />} exact />
+            <Route path='/login' element={<LoginPage />} />
             {/* <Route path='/' element={<LoginPage />} /> */}
             {/* <Route path='/Register' element={<Register />} /> */}
             {/* <Route path='/detail' element={<DetailPage />} /> */}
@@ -57,7 +56,9 @@ class App extends React.Component {
         <div>
           <Routes>
             {/* <Route path='/' element={<Home />} exact /> */}
-            <Route path='/' element={<LoginPage />} />
+            <Route path='/' element={<LandingPage />} />
+            <Route path='/login' element={<LoginPage />} />
+
             {/* <Route path='/Register' element={<Register />} />
             <Route path='/detail' element={<DetailPage />} />
             <Route path='/Cart' element={<Cart />} />

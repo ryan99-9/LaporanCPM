@@ -64,7 +64,7 @@ class LoginPage extends React.Component {
                             type={visibility ? "text" : "password"}
                         />
                     </InputGroup>
-                    <Button onClick={this.onLogin} className='loginButton'>Login in</Button>
+                    <Button onClick={this.onLogin} className='loginButton'>Login</Button>
                     {/* <p className='textHaveAccount'>Do you have an account?
                         <Link to="/Register" className='textRegister'> Register
                         </Link></p> */}

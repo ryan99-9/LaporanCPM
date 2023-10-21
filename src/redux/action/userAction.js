@@ -1,15 +1,14 @@
 import Axios from 'axios'
-const API = 'https://database-jersey.herokuapp.com/'
 export const login = (username, password) => {
     return (dispatch) => {
-        if (username === "digibsd" && password === "digi123"){
-            localStorage.setItem('idUser','digibsd')
+        if (username === "laporancpm" && password === "cpm123"){
+            localStorage.setItem('idUser','laporancpm')
             return dispatch({
                 type: 'LOGIN',
                 payload: {
-                    username : "digibsd",
+                    username : "laporancpm",
                     id: "200",
-                    password: "digi123",
+                    password: "cpm123",
                     role: "admin",
                     cart: []
                 }
@@ -19,28 +18,6 @@ export const login = (username, password) => {
                 type: 'ERROR_LOGIN'
             })
         }
-
-        // Axios.get(`${API}users?username=${username}&password=${password}`)
-        //     .then(res => {
-        //         // console.log(res.data[0]);
-        //         // console.log(res.data);
-        //         //Jika inputan salah
-        //         if (res.data.length === 0) {
-        //             return dispatch({
-        //                 type: 'ERROR_LOGIN'
-        //             })
-        //         }//jika inputan benar
-        //         else {
-        //             //Menyimpan data idUser ke local storage
-        //             localStorage.setItem('idUser', res.data[0].id)
-        //             //Mengirim data ke userReducer
-        //             return dispatch({
-        //                 type: 'LOGIN',
-        //                 payload: res.data[0]
-        //             })
-
-        //         }
-        //     })
     }
 }
 
@@ -65,66 +42,19 @@ export const logOut = () => {
 
 export const keepLogin = (id) => {
     return (dispatch) => {
-        if (id === "digibsd"){
+        if (id === "laporancpm"){
             return dispatch({
                 type: 'LOGIN',
                 payload: {
-                    username : "digibsd",
+                    username : "laporancpm",
                     id: "200",
-                    password: "digi123",
+                    password: "cpm123",
                     role: "admin",
                     cart: []
                 }
             })
         }
-        Axios.get(`${API}users/${id}`)
-            .then(res => {
-                
-            })
+       
 
     }
 }
-
-
-
-export const register = (username, email, addingData) => {
-    return (dispatch) => {
-        // cek kesamaan username di database
-        Axios.get(`${API}users?username=${username}`)
-            .then(res => {
-                if (res.data.length !== 0) {
-                    return dispatch({
-                        type: 'USERNAME_EMAIL_EXIST'
-                    })
-                }
-                // cek kesamaan email di database
-                Axios.get(`${API}users?email=${email}`)
-                    .then(res => {
-                        if (res.data.length !== 0) {
-                            return dispatch({
-                                type: 'USERNAME_EMAIL_EXIST'
-                            })
-                        }
-                        // post data user baru
-                        Axios.post(`${API}users`, addingData)
-                            .then(res => {
-                                console.log(res.data);
-                                return dispatch({
-                                    type: 'SUCCESS_REGIST'
-                                })
-                            })
-                    })
-            })
-    }
-}
-
-
-
-    // return (dispatch) => {
-    //     Axios.post('${API}users', addingData)
-    //         return dispatch({
-    //             type: 'SUCCESS_REGIST'
-    //         })
-
-
-    // }
