@@ -14,7 +14,7 @@ class LandingPage extends React.Component {
    
     render() {
         return (
-            <div  style={{ height: '100vh',marginTop:'-40px' }} >
+            <div  style={{ marginTop:'-40px' , height:'100vh'}} >
                 <Navbar variant='dark' fixed='top' className='px-5' style={styles.navbar} expand="lg">
                 <Navbar.Brand href="#home">
                     <Image style={styles.image} src={LOGO} />
@@ -22,21 +22,14 @@ class LandingPage extends React.Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav className="me-auto">
-                        {/* <Nav.Link style={styles.navLink} as={Link} to='/' >Home</Nav.Link>
-                        {/* <Nav.Link style={styles.navLink} href='/#footer'>Product</Nav.Link> */}
                         <Nav.Link style={styles.navLink} >Welcome to Digital Report System, Please Login to Access Dashboard!</Nav.Link>
-                        {/* <div>Digital Report System</div> */}
-                        {/* <Nav.Link className="mx-auto" href='/#footer'>Digital Report System</Nav.Link> */}
                     </Nav>
                     <Dropdown >
-                    {/* <Dropdown.Toggle as={Link} to='/login'  variant='dark' id="dropdown-basic" style={{ backgroundColor: '#e8e8e8', border: 'none', color: 'black' }}>
-                            Login
-                        </Dropdown.Toggle> */}
                     <Dropdown.Item as={Link} to='/login' 
                         style={styles.dropdownItem}
                         
                         onMouseOver={(e) => (e.target.style.backgroundColor = '#617a97')}
-    onMouseOut={(e) => (e.target.style.backgroundColor = '#0b406b')}
+                        onMouseOut={(e) => (e.target.style.backgroundColor = '#0b406b')}
                     >
                    Login
                     </Dropdown.Item>
@@ -44,18 +37,16 @@ class LandingPage extends React.Component {
                        
                     </Dropdown>
                 </Navbar.Collapse>
-            </Navbar>
-                {/* <div className='second_layer'> */}
-                
+            </Navbar>                
                 <br/>
                 <br/>
                 <br/>
       <iframe
+    //   src="https://docs.google.com/presentation/d/e/2PACX-1vQaOIvw1ru7bTTdQ7QcR58AU94GdrkKWJlazuZBwqeotq4T0ZGuih70gv5TvRAl7lJYgUBgKj_XA9jU/embed?start=true&loop=true&delayms=3000" frameborder="0" width="960" height="93%"  allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"
+
       src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTx6wuAxVdN5bDQFlu4BaELTe-ZkIj-xB5kHRaRV5DpTplnoSoQ8xz2wxTIhQKsdCRCQ2ir4FVbYFYC/pubhtml?widget=true&amp;headers=false"
-    //    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSzywhRZxctcB7-7YlNDAqolh20IBOvVuZLxSIK6DE_4doNJiPxq2S01-rARrIU68DHMZSn1rkP_MJV/pubhtml?widget=true&amp;headers=false"
-    //   src="https://docs.google.com/spreadsheets/d/1UG_XorWICDGfCbP6gm_fMYwA_6xduC5fM88FKvmy3mM/edit?usp=sharing;widget=true&amp;headers=false"
-        // src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQN502bCWZL9vZkNjjMtE4ELYIN8bkAmL_CnB4YLMP7ae29X1rq505Wj8TkX711cgvqeC6UmgKx_P45/pubhtml?widget=true&amp;headers=false"
-        width="100%" height="95%" padding="5rem" >
+        width="100%" height="95%" padding="5rem" 
+        >
 
         </iframe>
    
