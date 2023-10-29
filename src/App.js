@@ -13,6 +13,9 @@ import { keepLogin } from './redux/action';
 
 import { connect } from 'react-redux'
 import LandingPage from './pages/LandingPage/LandingPage.jsx';
+import Menu from './pages/Menu/menu.jsx';
+import UploadPdf from './pages/FiturPdf/uploadPdf.jsx';
+import PdfList from './pages/FiturPdf/pdfList.jsx';
 
 
 
@@ -26,7 +29,9 @@ class App extends React.Component {
           <Routes>
             <Route path='/' element={<Home />} exact />
             <Route path='/login' element={<LoginPage />} />
-            {/* <Route path='/' element={<LoginPage />} /> */}
+            <Route path='/menu' element={<Menu />} />
+            <Route path='/userareas' element={<UploadPdf />} />
+            <Route path='/userareasb' element={<PdfList />} />
             {/* <Route path='/Register' element={<Register />} /> */}
             {/* <Route path='/detail' element={<DetailPage />} /> */}
             {/* <Route path='/HistoryAdmin' element={<HistoryAdmin />} /> */}
@@ -58,7 +63,11 @@ class App extends React.Component {
             {/* <Route path='/' element={<Home />} exact /> */}
             <Route path='/' element={<LandingPage />} />
             <Route path='/login' element={<LoginPage />} />
+            <Route path='/menu' element={<Menu />} />
+            <Route path='/userareas' element={<UploadPdf />} />
+            <Route path='/userareasb' element={<PdfList />} />
 
+            
             {/* <Route path='/Register' element={<Register />} />
             <Route path='/detail' element={<DetailPage />} />
             <Route path='/Cart' element={<Cart />} />
