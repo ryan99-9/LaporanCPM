@@ -15,6 +15,7 @@ class LoginPage extends React.Component {
       error: false,
     };
   }
+
   onLogin = () => {
     //ambil data dari username dan password
     let username = this.refs.username.value;

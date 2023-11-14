@@ -5,30 +5,96 @@ import axios from "axios";
 function PdfList() {
     const [pdfList, setPdfList] = useState([]);
     const [error, setError] = useState(null);
+    const [pdfUrl, setPdfUrl] = useState(null);
 
     useEffect(() => {
         axios
-            .get("https://backend.laporanbpr.com/pdf-list")
+            .post("https://backend.laporanbpr.com/file/get_pdf")
             .then((response) => {
                 // Assuming the API response is an array of PDF filenames.
-                setPdfList(response.data);
+                setPdfList(response.data.message);
+                console.log(response.data.message);
             })
             .catch((err) => {
                 setError(err);
             });
     }, []);
+    const viewPdf = async (event) => {
+        // event.preventDefault();
+
+        const data = {
+            fileName: event,
+        };
+        console.log("req body", data);
+
+        try {
+            const response = await fetch(
+                "https://backend.laporanbpr.com/file/pdf",
+
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                }
+            );
+
+            if (response.ok) {
+                const pdfBlob = await response.blob();
+                const pdfUrl = URL.createObjectURL(pdfBlob);
+                setPdfUrl(pdfUrl);
+                // alert('File uploaded successfully!')
+                window.location.href = `${pdfUrl}`;
+
+                // Handle success, e.g., show a success message or redirect
+            } else {
+                alert("gagal buka pdf");
+                // Handle error, e.g., show an error message
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            // Handle other errors, e.g., network issues
+        }
+    };
 
     // Function to delete a PDF
-    const handleDelete = (pdfFilename) => {
-        axios
-            .delete(`https://backend.laporanbpr.com/pdf-list/${pdfFilename}`)
-            .then(() => {
-                setPdfList(pdfList.filter((pdf) => pdf !== pdfFilename));
-                console.log(pdfList);
-            })
-            .catch((err) => {
-                setError(err);
-            });
+    const deletePdf = async (nama, id) => {
+        // event.preventDefault();
+
+        const data = {
+            fileName: nama,
+            id: id,
+        };
+        console.log("req body", data);
+
+        try {
+            const response = await fetch(
+                "https://backend.laporanbpr.com/file/delete_pdf",
+
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                }
+            );
+
+            if (response.ok) {
+                alert("file terhapus");
+                // alert('File uploaded successfully!')
+                window.location.href = "https://laporanbpr.com/userareasb";
+
+                // Handle success, e.g., show a success message or redirect
+            } else {
+                alert("gagal terhapus");
+                // Handle error, e.g., show an error message
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            // Handle other errors, e.g., network issues
+        }
     };
 
     if (error) {
@@ -42,23 +108,23 @@ function PdfList() {
             <ul style={styles.pdfList}>
                 {pdfList.map((pdf, index) => (
                     <li style={styles.pdfListItem} key={index}>
-                        <h6>
-                            {index + 1}.
-                            <a
-                                style={styles.pdfLink}
-                                href={`https://backend.laporanbpr.com/${pdf}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                        <div style={styles.pdfLink}>
+                            {index + 1}.{pdf.file_pdf}
+                        </div>
+                        <div style={styles.buttonView}>
+                            <button
+                                style={styles.deleteButton}
+                                onClick={() => viewPdf(pdf.file_pdf)}
                             >
-                                {pdf}
-                            </a>
-                        </h6>
-                        {/* <button
-                            style={styles.deleteButton}
-                            onClick={() => handleDelete(pdf)}
-                        >
-                            Delete
-                        </button> */}
+                                View
+                            </button>
+                            <button
+                                style={styles.deleteButton}
+                                onClick={() => deletePdf(pdf.file_pdf, pdf.id)}
+                            >
+                                Delete
+                            </button>
+                        </div>
                         <br />
                     </li>
                 ))}
@@ -66,25 +132,133 @@ function PdfList() {
         </div>
     );
 }
+// const styles = {
+//     container: {
+//         display: "flex",
+//         flexDirection: "column",
+//         alignItems: "center",
+//         padding: "5px",
+//         marginTop: "60px",
+//         background: "#133a6b",
+//     },
+//     heading: {
+//         fontSize: "24px",
+//         fontWeight: "bold",
+//         marginBottom: "20px",
+//         color: "white",
+//     },
+//     pdfList: {
+//         listStyleType: "none",
+//         padding: 0,
+//         margin: 0,
+//     },
+//     pdfListItem: {
+//         marginBottom: "20px",
+//         border: "1px solid #e1e1e1",
+//         borderRadius: "6px",
+//         padding: "20px",
+//         width: "100%",
+//         display: "flex",
+//         justifyContent: "space-between",
+//         alignItems: "center",
+//         color: "white",
+//     },
+//     pdfLink: {
+//         textDecoration: "none",
+//         fontSize: "16px",
+//         color: "white",
+//         marginLeft: "8px",
+//     },
+//     deleteButton: {
+//         backgroundColor: "#f44336",
+//         color: "white",
+//         padding: "8px 16px",
+//         border: "none",
+//         borderRadius: "4px",
+//         cursor: "pointer",
+//         transition: "background-color 0.3s",
+//         marginLeft: "auto",  //
+//     },
+// };
+
+// const styles = {
+//     container: {
+//         display: "flex",
+//         flexDirection: "column",
+//         alignItems: "center",
+//         padding: "20px",
+//         marginTop: "60px",
+//         background: "#133a6b",
+//         height: "90vh",
+//     },
+//     heading: {
+//         fontSize: "24px",
+//         fontWeight: "bold",
+//         marginBottom: "20px",
+//         color: "white",
+//     },
+//     pdfList: {
+//         listStyleType: "none",
+//         padding: "20px",
+//         margin: 0,
+//         width: "80vw",
+//     },
+//     pdfListItem: {
+//         marginBottom: "20px",
+//         border: "1px solid #e1e1e1",
+//         borderRadius: "6px",
+//         padding: "20px",
+//         width: "100%",
+//         display: "flex",
+//         justifyContent: "space-between",
+//         alignItems: "center",
+//         color: "white",
+//     },
+//     pdfLink: {
+//         textDecoration: "none",
+//         fontSize: "16px",
+//         color: "white",
+//         marginLeft: "8px",
+//         width: "80px",
+//         backgroundColor: "yellow",
+//     },
+//     buttonView: {
+//         backgroundColor: "blue",
+//     },
+//     deleteButton: {
+//         backgroundColor: "#f44336",
+//         color: "white",
+//         padding: "8px 16px",
+//         border: "none",
+//         borderRadius: "4px",
+//         cursor: "pointer",
+//         transition: "background-color 0.3s",
+//         marginLeft: "8px",
+//         alignItems: "right",
+//     },
+// };
+
 const styles = {
     container: {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         padding: "20px",
-        marginTop:"60px",
-        background: '#133a6b',
+        marginTop: "60px",
+        background: "#133a6b",
+        height: "90vh",
     },
     heading: {
         fontSize: "24px",
         fontWeight: "bold",
         marginBottom: "20px",
-        color:"white",
+        color: "white",
     },
     pdfList: {
         listStyleType: "none",
-        padding: 0,
+        padding: "20px",
         margin: 0,
+        width: "80vw",
     },
     pdfListItem: {
         marginBottom: "20px",
@@ -95,13 +269,18 @@ const styles = {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        color:"white",
+        color: "white",
     },
     pdfLink: {
         textDecoration: "none",
         fontSize: "16px",
-        color:"white",
-        marginLeft:"8px",
+        color: "white",
+        marginRight: "8px",
+        flex: 1,
+    },
+    buttonView: {
+        display: "flex",
+        alignItems: "center",
     },
     deleteButton: {
         backgroundColor: "#f44336",
@@ -111,6 +290,8 @@ const styles = {
         borderRadius: "4px",
         cursor: "pointer",
         transition: "background-color 0.3s",
+        marginLeft: "8px",
     },
 };
+
 export default PdfList;
